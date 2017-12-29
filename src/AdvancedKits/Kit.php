@@ -5,6 +5,7 @@ namespace AdvancedKits;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\entity\Effect;
 use pocketmine\item\enchantment\Enchantment;
+use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\Item;
 use pocketmine\Player;
 use PiggyCustomEnchants\CustomEnchants\CustomEnchants;
@@ -116,7 +117,7 @@ class Kit{
                 if($this->ak->piggyEnchants !== null && $ench instanceof CustomEnchants){
                     $this->ak->piggyEnchants->addEnchantment($item, $ench->getName(), (int) $name_level);
                 }else{
-                    $item->addEnchantment($ench->setLevel((int) $name_level));
+                     $item->addEnchantment(new EnchantmentInstance($ench, (int) $name_level));
                 }
             }
         }
