@@ -85,9 +85,8 @@ class Kit{
 
 		if(isset($this->data["effects"])){
 			foreach($this->data["effects"] as $effectString){
-				$e = $this->loadEffect(...explode(":", $effectString));
-				if($e !== null){
-                    $effectInstance = new EffectInstance(Effect::getEffectByName($e));
+				$effectInstance = $this->getEffectInstance(...explode(":", $effectString));
+				if($effectInstance !== null){
 					$player->addEffect($effectInstance);
 				}
 			}
@@ -127,10 +126,11 @@ class Kit{
         return $item;
     }
 
-    private function loadEffect(string $name = "INVALID", int $seconds = 60, int $amplifier = 1){
+    private function getEffectInstance(string $name = "INVALID", int $seconds = 60, int $amplifier = 1){
         $e = Effect::getEffectByName($name);
         if($e !== null){
-            return $e->setDuration($seconds * 20)->setAmplifier($amplifier);
+            $ei = new EffectInstance($e, $seconds, $amplifier);
+            return $ei;
         }
         return null;
     }
