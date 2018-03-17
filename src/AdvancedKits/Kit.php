@@ -4,6 +4,7 @@ namespace AdvancedKits;
 
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\entity\Effect;
+use pocketmine\entity\EffectInstance;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\Item;
@@ -85,7 +86,8 @@ class Kit{
 			foreach($this->data["effects"] as $effectString){
 				$e = $this->loadEffect(...explode(":", $effectString));
 				if($e !== null){
-					$player->addEffect($e);
+                    $effectInstance = new EffectInstance(Effect::getEffectByName($e));
+					$player->addEffect($effectInstance);
 				}
 			}
 		}
