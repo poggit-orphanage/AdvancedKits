@@ -117,7 +117,7 @@ class Kit{
                 }
             }elseif($ench !== null){
 				if($this->ak->piggyEnchants !== null && $ench instanceof CustomEnchants){
-					$this->ak->piggyEnchants->addEnchantment($item, $ench->getName(), (int) $name_level);
+					$this->ak->piggyEnchants->addEnchantment($item, $ench, (int) $name_level);
 				}else{
 					$item->addEnchantment(new EnchantmentInstance($ench, (int) $name_level));
 				}
